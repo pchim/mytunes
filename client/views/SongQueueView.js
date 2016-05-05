@@ -7,20 +7,27 @@ var SongQueueView = Backbone.View.extend({
     this.collection.on('add', function() {
       this.render();
     }, this);
+
+    this.collection.on('remove', function() {
+      this.render();
+    }, this);
+
     this.render();
   },
 
   render: function() {
-    var html = $('<div></div>');
+    var queueHtml = $('<div></div>');
+    this.$el.html('<th>Queue</th>');
 
-    if (this.collection.models.length > 0) {
-      var newSong = this.collection.models[this.collection.models.length - 1];
-      var entryView = new SongQueueEntryView({model: newSong});
-      html.append(entryView.render());
-    }
+    _.each(this.collection.models, function(song) {
+      console.log('song in each', song);
+      var entryView = new SongQueueEntryView({model: song});
+      queueHtml.append(entryView.render());
+    });
 
 
-    return this.$el.append(html);
+
+    return this.$el.append(queueHtml);
   }
 
 });
