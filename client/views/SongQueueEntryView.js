@@ -26,7 +26,6 @@ var SongQueueEntryView = Backbone.View.extend({
 
 
   initialize: function(song) {
-    console.log('init', song);
     //this.render();
   },
 
@@ -42,7 +41,6 @@ var SongQueueEntryView = Backbone.View.extend({
   // },
 
   render: function() {
-    console.log('entry', this);
     return this.$el.html(this.template(this.model.attributes));
   }
   
