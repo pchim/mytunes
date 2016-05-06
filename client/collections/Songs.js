@@ -2,7 +2,6 @@
 var Songs = Backbone.Collection.extend({
 
   model: SongModel,
-  songs: [], 
 
   initialize: function() {
     var res;
@@ -12,14 +11,21 @@ var Songs = Backbone.Collection.extend({
       type: 'GET',
       contentType: 'application/json',
       success: function (data) {
-        _.each(data, function(song) {
-          context.add(song);
-        });
+        // context.set(data.results);
+        // _.each(data, function(song) {
+        //   context.add(song);
+        // });
+        context.getData(data);
       },
       error: function (data) {
         console.error('chatterbox: Failed to send message', data);
       }
     });
+  },
+
+  getData: function(data) {
+    this.trigger('getData');
+    this.set(data.results);    
   }
 
 });

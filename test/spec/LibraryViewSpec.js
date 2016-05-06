@@ -37,8 +37,8 @@ describe('LibraryView', function() {
 
     beforeEach(function() {
       requests = [];
-      xhr = sinon.useFakeXMLHttpRequest();
-      xhr.onCreate = function(request) {
+      hr = sinon.useFakeXMLHttpRequest();
+      hr.onCreate = function(request) {
         requests.push(request);
       };
 
@@ -46,7 +46,7 @@ describe('LibraryView', function() {
     });
 
     afterEach(function() {
-      xhr.restore();
+      hr.restore();
     });
 
     it('should re-render with fetched songs', function() {
